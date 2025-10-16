@@ -42,11 +42,33 @@
 </body>
 <script>
 	function makeNewDiv(){
+		var inputvalue = document.getElementById("value").value
+		var listyitems = document.getElementsByClassName("listy")
+		
+		console.log(listyitems.length)
+
+		if(listyitems.length >= 9)
+		{
+			for (let i = 0; i < listyitems.length; i++) {
+				if (listyitems[i].innerHTML == inputvalue) {
+					console.log("Duplicate " + listyitems[i] + " removed.")
+					listyitems[i].remove()
+					break;
+				}
+			}
+
+			listyitems = document.getElementsByClassName("listy")
+			if(listyitems.length >= 9)
+			{
+				listyitems[0].remove()
+			}
+		}
+
 		/* make the div and its text */
 		let element = document.createElement("div")
-		element.innerHTML = document.getElementById("value").value
+		element.innerHTML = inputvalue
 		element.style.color = "orange"
-		element.className = "listy"
+		element.className += "listy"
 
 		/* add it to the container */
 		let container = document.getElementById('target')
